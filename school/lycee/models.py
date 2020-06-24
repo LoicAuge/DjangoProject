@@ -23,6 +23,8 @@ class Cursus(models.Model):
         null=True,
         default='0000-00001'
     )
+    def __str__(self):
+        return self.name
 
 
 class Student(models.Model):
@@ -73,3 +75,5 @@ class Student(models.Model):
         on_delete=models.CASCADE,  # necessaire selon la version de Django
         null=True
     )
+    def __str__(self):
+        return self.first_name+ " " + self.last_name
