@@ -2,7 +2,7 @@
 .page-header{
     background-color: #505050; font-family: Arial; color: #FFFFFF;
     width: 100%;
-    padding: 3px;
+    padding-left: 10px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -14,7 +14,7 @@
 }
 
 .img-fluid{
-    max-width: 10%;
+    max-width: 15%;
     height: auto;
     text-align: right;
 }
