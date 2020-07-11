@@ -77,3 +77,24 @@ class Student(models.Model):
     )
     def __str__(self):
         return self.first_name+ " " + self.last_name
+
+class Presence(models.Model):
+    reason = models.CharField(
+        max_length=50,
+        blank=False,
+        null=True,
+        default=''
+    )
+    isMissing = models.BooleanField(
+        default=False
+    )
+    date = models.DateField(
+        verbose_name='date of birth',
+        blank=False,
+        null=False
+    )
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,  # necessaire selon la version de Django
+        null=True
+    )
