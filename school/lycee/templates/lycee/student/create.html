@@ -9,11 +9,41 @@
 {% block content %}
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.non_field_errors }}
+        <div class="form-group">
+            {{ form.first_name.errors }}
+            <label for="{{ form.first_name.id_for_label }}" class="labelo">Prénom :</label><br>
+            {{ form.first_name }}
+        </div>
+        <div class="form-group">
+            {{ form.last_name.errors }}
+            <label for="{{ form.last_name.id_for_label }}" class="labelo">Nom :</label><br>
+            {{ form.last_name }}
+        </div>
+        <div class="form-group">
+            {{ form.email.errors }}
+            <label for="{{ form.email.id_for_label }}" class="labelo">Email :</label><br>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            {{ form.phone.errors }}
+            <label for="{{ form.phone.id_for_label }}" class="labelo">Téléphone :</label><br>
+            {{ form.phone }}
+        </div>
+        <div class="form-group">
+            {{ form.comments.errors }}
+            <label for="{{ form.comments.id_for_label }}" class="labelo">Commentaires :</label><br>
+            {{ form.comments }}
+        </div>
+        <div class="form-group">
+            {{ form.cursus.errors }}
+            <label for="{{ form.cursus.id_for_label }}" class="labelo">Cursus :</label><br>
+            {{ form.cursus }}
+        </div>
 
         <div>
-            <button type="cancel"><a href="/lycee/">Annuler</a></button>
-            <button type="submit">Valider</button>
+            <button type="cancel" class="btn btn-danger"><a style="color: white"href="/lycee/">Annuler</a></button>
+            <button type="submit" class="btn btn-primary">Valider</button>
         </div>
     </form>
 {% endblock%}

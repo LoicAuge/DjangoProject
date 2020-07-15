@@ -12,6 +12,7 @@
       <a href="/lycee/student/{{student.id}}"><li class="list-group-item">{{student.last_name}} {{student.first_name}}</li></a>
     {% endfor %}
     </ul>
+  <a href="cursus/update/{{cursusID}}"><button type="button" class="btn btn-primary">Editer le cursus</button></a>
   {% endblock %}
 {% else %}
   <p> No cursus to show .</p>

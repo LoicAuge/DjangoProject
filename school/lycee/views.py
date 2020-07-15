@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.views.generic import CreateView, UpdateView
 from .models import Cursus, Student
-from .forms import StudentForm
+from .forms import StudentForm, CursusForm
 from django.template import loader
 
 def index(request):
@@ -16,7 +16,7 @@ def index(request):
 def detail(request, idC):
     result_list = Student.objects.filter(cursus_id = idC)
     cursus = Cursus.objects.get(id=idC)
-    context = {'liste': result_list, 'cursusName': cursus.name}
+    context = {'liste': result_list, 'cursusName': cursus.name, 'cursusID': cursus.pk}
     return render(request, 'lycee/list-onCursus.html', context)
 
 class StudentCreateView(CreateView):
@@ -39,3 +39,19 @@ class StudentUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse("detail_student", args=(self.object.pk,))
+
+class CursusCreateView(CreateView):
+    model = Cursus
+    form_class = CursusForm
+    template_name = "lycee/cursus/create_cursus.html"
+
+    def get_success_url(self):
+        return reverse("detail", args=(self.object.pk,))
+
+class CursusUpdateView(UpdateView):
+    model = Cursus
+    form_class = CursusForm
+    template_name = "lycee/cursus/create_cursus.html"
+
+    def get_success_url(self):
+        return reverse("detail", args=(self.object.pk,))
