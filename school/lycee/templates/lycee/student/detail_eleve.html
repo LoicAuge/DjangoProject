@@ -1,0 +1,14 @@
+{% extends "master.html" %}
+    {% block title %}
+        <h3>Détail de l'élève {{eleve.last_name }} {{eleve.first_name}}</h3>
+    {% endblock %}
+
+    {% block content %}
+            <ul class="list-group">
+                <li class="list-group-item">Date de naissance : {{eleve.birth_date}}</li>
+                <li class="list-group-item">Téléphone : {{eleve.phone}}</li>
+                <li class="list-group-item">Email : {{eleve.email|lower}}</li>
+                <li class="list-group-item">Cursus : {{eleve.cursus}}</li>
+            </ul>
+            <a href="update/{{eleve.id}}"><button type="button" class="btn btn-primary">Editer l'élève</button></a>
+    {% endblock %}

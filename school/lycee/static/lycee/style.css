@@ -22,6 +22,9 @@
 
 .list-group{
     padding-top: 10px;
+    width: fit-content;
+    padding-bottom: 10px;
+
 }
 
 .table-striped, .table{
@@ -31,7 +34,4 @@
     /* margin-left: auto; */
     margin-right: auto;
     text-align: center;
-}
-h3{
-    MARGIN6
 }

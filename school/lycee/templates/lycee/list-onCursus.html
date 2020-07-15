@@ -9,7 +9,7 @@
   {% block content %}
     <ul class="list-group">
     {% for student in liste %}
-        <a href="/lycee/{{student.id}}"><li class="list-group-item">{{student.last_name}} {{student.first_name}}</li></a>
+      <a href="/lycee/student/{{student.id}}"><li class="list-group-item">{{student.last_name}} {{student.first_name}}</li></a>
     {% endfor %}
     </ul>
   {% endblock %}
