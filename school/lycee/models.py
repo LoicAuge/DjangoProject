@@ -78,6 +78,26 @@ class Student(models.Model):
     def __str__(self):
         return self.first_name+ " " + self.last_name
 
+class Appel(models.Model):
+    date = models.DateField(
+        verbose_name="date de l'appel",
+        blank=False,
+        null=False
+    )
+    heure_d = models.TimeField(
+        auto_now=False,
+        auto_now_add=False
+    )
+    heure_f = models.TimeField(
+        auto_now=False,
+        auto_now_add=False
+    )
+    cursus = models.ForeignKey(
+        Cursus,
+        on_delete=models.CASCADE,  # necessaire selon la version de Django
+        null=True
+    )
+
 class Presence(models.Model):
     reason = models.CharField(
         max_length=50,
@@ -89,12 +109,17 @@ class Presence(models.Model):
         default=False
     )
     date = models.DateField(
-        verbose_name='date of birth',
+        verbose_name='date of presence',
         blank=False,
         null=False
     )
     student = models.ForeignKey(
         Student,
+        on_delete=models.CASCADE,  # necessaire selon la version de Django
+        null=True
+    )
+    appel = models.ForeignKey(
+        Appel,
         on_delete=models.CASCADE,  # necessaire selon la version de Django
         null=True
     )
