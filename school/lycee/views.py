@@ -4,8 +4,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.urls import reverse
 from django.views.generic import CreateView, UpdateView
-from .models import Cursus, Student
-from .forms import StudentForm, CursusForm
+from .models import Cursus, Student, Presence
+from .forms import StudentForm, CursusForm, PresenceForm
 from django.template import loader
 
 def index(request):
@@ -55,3 +55,11 @@ class CursusUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse("detail", args=(self.object.pk,))
+
+class PresenceCreateView(CreateView):
+    model = Presence
+    form_class = PresenceForm
+    template_name = "lycee/create_presence.html"
+
+    def get_success_url(self):
+        return reverse("index")

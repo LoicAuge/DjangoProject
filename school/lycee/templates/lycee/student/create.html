@@ -21,6 +21,11 @@
             {{ form.last_name }}
         </div>
         <div class="form-group">
+            {{ form.birth_date.errors }}
+            <label for="{{ form.birth_date.id_for_label }}" class="labelo">Date de naissance :</label><br>
+            {{ form.birth_date }}
+        </div>
+        <div class="form-group">
             {{ form.email.errors }}
             <label for="{{ form.email.id_for_label }}" class="labelo">Email :</label><br>
             {{ form.email }}

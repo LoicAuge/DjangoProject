@@ -15,9 +15,12 @@
 }
 
 .img-fluid{
-    max-width: 15%;
     height: auto;
     text-align: right;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
 }
 
 .list-group{

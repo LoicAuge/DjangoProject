@@ -1,5 +1,6 @@
+from django.forms import DateInput
 from django.forms.models import ModelForm
-from .models import Student, Cursus
+from .models import Student, Cursus, Presence
 
 class StudentForm(ModelForm):
 
@@ -12,3 +13,9 @@ class CursusForm(ModelForm):
     class Meta:
         model = Cursus
         fields = ("name", "year_from_bac", "scholar_year")
+
+class PresenceForm(ModelForm):
+
+    class Meta:
+        model = Presence
+        fields = ("date_presence", "isMissing", "reason", "student")

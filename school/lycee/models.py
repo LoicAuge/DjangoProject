@@ -108,7 +108,7 @@ class Presence(models.Model):
     isMissing = models.BooleanField(
         default=False
     )
-    date = models.DateField(
+    date_presence = models.DateField(
         verbose_name='date of presence',
         blank=False,
         null=False
