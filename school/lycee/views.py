@@ -1,12 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.http import HttpResponse
 from django.urls import reverse
 from django.views.generic import CreateView, UpdateView
-from .models import Cursus, Student, Presence
+from .models import Cursus, Student, Presence, Appel
 from .forms import StudentForm, CursusForm, PresenceForm
 from django.template import loader
+from django.views.decorators.csrf import csrf_protect
 
 def index(request):
     result_list = Cursus.objects.order_by('name')
@@ -63,3 +64,23 @@ class PresenceCreateView(CreateView):
 
     def get_success_url(self):
         return reverse("index")
+
+def cursusCall(request, idC):
+    if request.method == 'POST':
+        stud_list = Student.objects.filter(cursus_id=idC)
+        cursuse = Cursus.objects.get(id=idC)
+        app = Appel(date=request.POST.get("date_appel",""), cursus= cursuse)
+        app.save()
+        for stud in stud_list:
+            if request.POST.get(str(stud.id),"") == 'on':
+                boolTemp = True
+            else:
+                boolTemp = False
+            pres = Presence(date_presence=request.POST.get("date_appel",""), student=stud, appel=app, isMissing=boolTemp)
+            pres.save()
+        return redirect("index")
+    else:
+        stud_list = Student.objects.filter(cursus_id=idC)
+        cursus = Cursus.objects.get(id=idC)
+        context = {'liste': stud_list, 'cursus': cursus}
+        return render(request, 'lycee/cursusCall.html', context)

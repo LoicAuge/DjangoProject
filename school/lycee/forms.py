@@ -19,3 +19,6 @@ class PresenceForm(ModelForm):
     class Meta:
         model = Presence
         fields = ("date_presence", "isMissing", "reason", "student")
+
+
+
