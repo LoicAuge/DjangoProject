@@ -84,16 +84,6 @@ class Appel(models.Model):
         blank=False,
         null=False
     )
-    heure_d = models.TimeField(
-        auto_now=False,
-        auto_now_add=False,
-        null=True
-    )
-    heure_f = models.TimeField(
-        auto_now=False,
-        auto_now_add=False,
-        null=True
-    )
     cursus = models.ForeignKey(
         Cursus,
         on_delete=models.CASCADE,  # necessaire selon la version de Django
