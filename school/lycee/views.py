@@ -36,7 +36,7 @@ def detail_Student(request, idS):
 class StudentUpdateView(UpdateView):
     model = Student
     form_class = StudentForm
-    template_name = "lycee/student/create.html"
+    template_name = "lycee/student/modify.html"
 
     def get_success_url(self):
         return reverse("detail_student", args=(self.object.pk,))
@@ -52,7 +52,7 @@ class CursusCreateView(CreateView):
 class CursusUpdateView(UpdateView):
     model = Cursus
     form_class = CursusForm
-    template_name = "lycee/cursus/create_cursus.html"
+    template_name = "lycee/cursus/modify_cursus.html"
 
     def get_success_url(self):
         return reverse("detail", args=(self.object.pk,))

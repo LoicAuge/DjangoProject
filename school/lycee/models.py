@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 # Create your models here.
@@ -23,6 +24,10 @@ class Cursus(models.Model):
         null=True,
         default='0000-00001'
     )
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'idC': self.pk})
+
     def __str__(self):
         return self.name
 
@@ -75,8 +80,10 @@ class Student(models.Model):
         on_delete=models.CASCADE,  # necessaire selon la version de Django
         null=True
     )
+
     def __str__(self):
-        return self.first_name+ " " + self.last_name
+        return self.first_name + " " + self.last_name
+
 
 class Appel(models.Model):
     date = models.DateField(
@@ -89,6 +96,7 @@ class Appel(models.Model):
         on_delete=models.CASCADE,  # necessaire selon la version de Django
         null=True
     )
+
 
 class Presence(models.Model):
     reason = models.CharField(
