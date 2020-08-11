@@ -18,7 +18,7 @@ def detail(request, idC):
     result_list = Student.objects.filter(cursus_id = idC)
     cursus = Cursus.objects.get(id=idC)
     context = {'liste': result_list, 'cursusName': cursus.name, 'cursusID': cursus.pk}
-    return render(request, 'lycee/list-onCursus.html', context)
+    return render(request, 'lycee/cursus/list-onCursus.html', context)
 
 class StudentCreateView(CreateView):
     model = Student
@@ -60,7 +60,7 @@ class CursusUpdateView(UpdateView):
 class PresenceCreateView(CreateView):
     model = Presence
     form_class = PresenceForm
-    template_name = "lycee/create_presence.html"
+    template_name = "lycee/presence/create_presence.html"
 
     def get_success_url(self):
         return reverse("index")
@@ -83,4 +83,17 @@ def cursusCall(request, idC):
         stud_list = Student.objects.filter(cursus_id=idC)
         cursus = Cursus.objects.get(id=idC)
         context = {'liste': stud_list, 'cursus': cursus}
-        return render(request, 'lycee/cursusCall.html', context)
+        return render(request, 'lycee/appel/cursusCall.html', context)
+
+def detailAppel(request):
+    result_list = Appel.objects.order_by('date')
+    resList = []
+    for appel in result_list:
+        templist = []
+        cursus = Cursus.objects.get(id=appel.cursus.id)
+        templist.append(appel.id)
+        templist.append(appel.date)
+        templist.append(cursus.name)
+        resList.append(templist)
+    context = {'liste': resList}
+    return render(request, 'lycee/appel/list-appel.html', context)

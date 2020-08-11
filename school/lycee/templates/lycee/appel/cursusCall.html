@@ -10,9 +10,9 @@
         {% csrf_token %}
         <input type="date" name="date_appel"><br>
         {% for stud in liste %}
-        <label class="labelo">{{stud.first_name}} {{stud.last_name}}</label>
-        <input type="checkbox" name="{{stud.id}}">
-        <br>
+            <label class="labelo">{{stud.first_name}} {{stud.last_name}}</label>
+            <input type="checkbox" name="{{stud.id}}">
+            <br>
         {% endfor %}
         <button type="cancel" class="btn btn-danger"><a style="color: white"href="/lycee/">Annuler</a></button>
         <button type="submit" class="btn btn-primary">Valider</button>
