@@ -1,0 +1,23 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% if liste%}
+  {% block title %}
+    <h3>Liste des presences pour l'appel du {{app.date}} pour le {{cur.name}}</h3>
+  {% endblock %}
+
+  {% block content %}
+    <ul class="list-group">
+    {% for pres in liste %}
+        {% if pres.0.isMissing %}
+            <li class="list-group-item">{{pres.1}} : Absent</li>
+        {% else %}
+            <li class="list-group-item">{{pres.1}} : Present</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+  {% endblock %}
+{% else %}
+  <p> Pas d'appel.</p>
+
+{% endif %}

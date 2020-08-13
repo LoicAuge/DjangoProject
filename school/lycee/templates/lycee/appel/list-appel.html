@@ -9,7 +9,7 @@
   {% block content %}
     <ul class="list-group">
     {% for call in liste %}
-      <a href="/lycee/call/{{call.0}}"><li class="list-group-item">Appel du {{call.1}} pour le cours de {{call.2}}</li></a>
+      <a href="/lycee/listCall/{{call.0}}"><li class="list-group-item">Appel du {{call.1}} pour le cours de {{call.2}}</li></a>
     {% endfor %}
     </ul>
   {% endblock %}

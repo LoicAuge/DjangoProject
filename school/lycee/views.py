@@ -97,3 +97,17 @@ def detailAppel(request):
         resList.append(templist)
     context = {'liste': resList}
     return render(request, 'lycee/appel/list-appel.html', context)
+
+def detailPresence(request, idA):
+    result_list = Presence.objects.filter(appel_id=idA)
+    resList = []
+    appel = Appel.objects.get(id=idA)
+    cursus = Cursus.objects.get(id=appel.cursus.id)
+    for presence in result_list:
+        templist = []
+        stud = Student.objects.get(id=presence.student.id)
+        templist.append(presence)
+        templist.append(stud.first_name + " "+ stud.last_name)
+        resList.append(templist)
+    context = {'liste': resList, 'app': appel, 'cur': cursus}
+    return render(request, 'lycee/presence/list-presence.html', context)

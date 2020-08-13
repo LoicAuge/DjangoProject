@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^cursus/update/(?P<pk>[0-9]+)$', views.CursusUpdateView.as_view(), name='update_cursus'),
     url(r'^cursusCall/(?P<idC>[0-9]+)$', views.cursusCall, name='update_cursus'),
     url(r'^student/(?P<idS>[0-9]+)$', views.detail_Student, name='detail_student'),
-    url(r'^calls', views.detailAppel, name='list-calls')
+    url(r'^calls', views.detailAppel, name='list-calls'),
+    url(r'^listCall/(?P<idA>[0-9]+)$', views.detailPresence, name='presence')
 ]
