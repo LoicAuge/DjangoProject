@@ -10,9 +10,9 @@
     <ul class="list-group">
     {% for pres in liste %}
         {% if pres.0.isMissing %}
-            <li class="list-group-item">{{pres.1}} : Absent</li>
+            <li class="list-group-item" style="background:#E45858; border: 1px solid black;">{{pres.1}} : Absent</li>
         {% else %}
-            <li class="list-group-item">{{pres.1}} : Present</li>
+            <li class="list-group-item" style="background:#89CF5E; border: 1px solid black;">{{pres.1}} : Present</li>
         {% endif %}
     {% endfor %}
     </ul>
