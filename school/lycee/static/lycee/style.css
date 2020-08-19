@@ -10,6 +10,15 @@
     align-items: center;
     margin-bottom: 10px;
 }
+
+.buttons{
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    justify-content: right;
+    align-items: center;
+}
+
 .container{
     max-width:100%
 }

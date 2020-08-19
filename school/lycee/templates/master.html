@@ -17,7 +17,10 @@
             <header>
                 <div class="page-header ">
                     <div>{% block title %}{% endblock %}</div>
-                    <div style="text-align: right; max-width: 4%"><a href="/lycee/"><img src="/static/lycee/house.png" class="img-fluid"></a></div>
+                    <div class="buttons">
+                        <div style="max-width: 6%"><a href="/lycee/"><img src="/static/lycee/house.png" class="img-fluid"></a></div>
+                        <div><button onclick="goBack()" class="btn btn-danger">Retour</button></div>
+                    </div>
                 </div>
             </header>
 
@@ -26,4 +29,10 @@
             </div>
         </div>
     </body>
+
+    <script>
+    function goBack() {
+    window.history.back();
+    }
+    </script>
 </html>
