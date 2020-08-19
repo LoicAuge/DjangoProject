@@ -98,6 +98,19 @@ def detailAppel(request):
     context = {'liste': resList}
     return render(request, 'lycee/appel/list-appel.html', context)
 
+def detailAppelCursus(request, idC):
+    result_list = Appel.objects.filter(cursus_id=idC).order_by('date')
+    resList = []
+    for appel in result_list:
+        templist = []
+        cursus = Cursus.objects.get(id=appel.cursus.id)
+        templist.append(appel.id)
+        templist.append(appel.date)
+        templist.append(cursus.name)
+        resList.append(templist)
+    context = {'liste': resList}
+    return render(request, 'lycee/appel/list-appel.html', context)
+
 def detailPresence(request, idA):
     result_list = Presence.objects.filter(appel_id=idA)
     resList = []

@@ -1,20 +1,23 @@
 {% extends "master.html" %}
 {% load static %}
 
-{% if liste%}
-  {% block title %}
+{% block title %}
     <h3>Liste des elèves du cursus {{cursusName}}</h3>
-  {% endblock %}
+{% endblock %}
 
-  {% block content %}
-    <ul class="list-group">
-    {% for student in liste %}
-      <a href="/lycee/student/{{student.id}}"><li class="list-group-item">{{student.last_name}} {{student.first_name}}</li></a>
-    {% endfor %}
-    </ul>
-  <a href="cursus/update/{{cursusID}}"><button type="button" class="btn btn-primary">Editer le cursus</button></a>
-  {% endblock %}
-{% else %}
-  <p> No cursus to show .</p>
+{% block content %}
+  {% if liste|length > 0 %}
 
-{% endif %}
+      <ul class="list-group">
+      {% for student in liste %}
+       <a href="/lycee/student/{{student.id}}"><li class="list-group-item">{{student.last_name}} {{student.first_name}}</li></a>
+      {% endfor %}
+      </ul>
+    <a href="cursus/update/{{cursusID}}"><button type="button" class="btn btn-primary">Editer le cursus</button></a>
+    <a href="/lycee/call_Cursus/{{cursusID}}"><button type="button" class="btn btn-primary">Appels du cursus</button></a>
+
+  {% else %}
+    <p> No cursus to show .</p>
+
+  {% endif %}
+{% endblock %}

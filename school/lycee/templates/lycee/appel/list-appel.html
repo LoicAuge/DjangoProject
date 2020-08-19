@@ -1,19 +1,22 @@
 {% extends "master.html" %}
 {% load static %}
 
-{% if liste%}
-  {% block title %}
+{% block title %}
     <h3>Liste des appels</h3>
-  {% endblock %}
+{% endblock %}
 
-  {% block content %}
-    <ul class="list-group">
-    {% for call in liste %}
-      <a href="/lycee/listCall/{{call.0}}"><li class="list-group-item">Appel du {{call.1}} pour le cours de {{call.2}}</li></a>
-    {% endfor %}
-    </ul>
-  {% endblock %}
-{% else %}
-  <p> Pas d'appel.</p>
+{% block content %}
+  {% if liste.length > 0 %}
 
-{% endif %}
+    <p> HOLA ! {{liste|length}} </p>
+      <ul class="list-group">
+      {% for call in liste %}
+       <a href="/lycee/listCall/{{call.0}}"><li class="list-group-item">Appel du {{call.1}} pour le cours de {{call.2}}</li></a>
+      {% endfor %}
+      </ul>
+
+  {% else %}
+    <p> Pas d'appel.</p>
+
+  {% endif %}
+{% endblock %}
