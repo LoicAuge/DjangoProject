@@ -1,0 +1,24 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+    <h3>Liste des appels particuliers</h3>
+{% endblock %}
+²
+{% block content %}
+  {% if liste|length > 0 %}
+
+    <ul class="list-group">
+        {% for call in liste %}
+            {% if call.0.isMissing %}
+                <li class="list-group-item" style="background:#E45858; border: 1px solid black;">Absence de {{call.1}} le {{call.0.date_presence}}{% if call.0.reason != "" %}<br> Raison : {{ call.0.reason }}{% endif%}</li>
+            {% else %}
+                <li class="list-group-item" style="background:#89CF5E; border: 1px solid black;">Presence de {{call.1}} le {{call.0.date_presence}}{% if call.0.reason != "" %}<br> Raison : {{ call.0.reason }}{% endif%}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+  {% else %}
+    <p> Pas d'appel particuliers.</p>
+
+  {% endif %}
+{% endblock %}

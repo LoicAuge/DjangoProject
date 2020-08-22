@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^student/(?P<idS>[0-9]+)$', views.detail_Student, name='detail_student'),
     url(r'^calls', views.detailAppel, name='list-calls'),
     url(r'^call_Cursus/(?P<idC>[0-9]+)$', views.detailAppelCursus, name='list-callsCursus'),
+    url(r'^particularCalls/', views.getParticularCalls, name='list-particularCalls'),
     url(r'^listCall/(?P<idA>[0-9]+)$', views.detailPresence, name='presence')
 ]

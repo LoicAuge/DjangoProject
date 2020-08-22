@@ -97,6 +97,9 @@ class Appel(models.Model):
         null=True
     )
 
+    def __str__(self):
+        return "Appel de " + self.cursus.name + " du " + self.date.strftime("%d/%m/%Y")
+
 
 class Presence(models.Model):
     reason = models.CharField(
@@ -123,3 +126,9 @@ class Presence(models.Model):
         on_delete=models.CASCADE,  # necessaire selon la version de Django
         null=True
     )
+
+    def __str__(self):
+        if self.isMissing == True:
+            return self.student.first_name + " " + self.student.last_name + " : Absent"
+        else :
+            return self.student.first_name + " " + self.student.last_name + " : Present"
