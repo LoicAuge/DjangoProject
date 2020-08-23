@@ -97,6 +97,14 @@ class Appel(models.Model):
         null=True
     )
 
+    debut = models.TimeField(
+        null=True
+    )
+
+    fin = models.TimeField(
+        null=True
+    )
+
     def __str__(self):
         return "Appel de " + self.cursus.name + " du " + self.date.strftime("%d/%m/%Y")
 

@@ -69,7 +69,7 @@ def cursusCall(request, idC):
     if request.method == 'POST':
         stud_list = Student.objects.filter(cursus_id=idC)
         cursuse = Cursus.objects.get(id=idC)
-        app = Appel(date=request.POST.get("date_appel",""), cursus= cursuse)
+        app = Appel(date=request.POST.get("date_appel",""), cursus= cursuse, debut = request.POST.get("debut_appel",""), fin = request.POST.get("fin_appel",""))
         app.save()
         for stud in stud_list:
             if request.POST.get(str(stud.id),"") == 'on':
@@ -94,6 +94,8 @@ def detailAppel(request):
         templist.append(appel.id)
         templist.append(appel.date)
         templist.append(cursus.name)
+        templist.append(appel.debut)
+        templist.append(appel.fin)
         resList.append(templist)
     context = {'liste': resList}
     return render(request, 'lycee/appel/list-appel.html', context)
@@ -107,6 +109,8 @@ def detailAppelCursus(request, idC):
         templist.append(appel.id)
         templist.append(appel.date)
         templist.append(cursus.name)
+        templist.append(appel.date)
+        templist.append(appel.date)
         resList.append(templist)
     context = {'liste': resList}
     return render(request, 'lycee/appel/list-appel.html', context)

@@ -8,7 +8,9 @@
   {% block content %}
     <form method="post">
         {% csrf_token %}
-        <input type="date" name="date_appel"><br>
+        Date de l'appel : <input type="date" name="date_appel">
+        Heure de début : <input type="time" name="debut_appel">
+        Heure de fin : <input type="time" name="fin_appel"><br>
         {% for stud in liste %}
             <label class="labelo">{{stud.first_name}} {{stud.last_name}}</label>
             <input type="checkbox" name="{{stud.id}}">
