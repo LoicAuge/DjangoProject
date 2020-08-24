@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+    <h3>Liste des absences de {{stud.first_name}} {{stud.last_name}}</h3>
+{% endblock %}
+
+{% block content %}
+  {% if pres|length > 0 %}
+
+      <ul class="list-group">
+      {% for presence in pres %}
+          {% if presence.isMissing %}
+            <li class="list-group-item">Absence le {{presence.date_presence}} {% if presence.reason != "" %}<br> Raison : {{ presence.reason }}{% endif%} </li>
+          {% endif %}
+      {% endfor %}
+      </ul>
+  {% else %}
+    <p> Pas d'absence pour cette élève.</p>
+
+  {% endif %}
+{% endblock %}

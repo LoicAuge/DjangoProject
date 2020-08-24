@@ -68,17 +68,22 @@ class PresenceCreateView(CreateView):
 def cursusCall(request, idC):
     if request.method == 'POST':
         stud_list = Student.objects.filter(cursus_id=idC)
-        cursuse = Cursus.objects.get(id=idC)
-        app = Appel(date=request.POST.get("date_appel",""), cursus= cursuse, debut = request.POST.get("debut_appel",""), fin = request.POST.get("fin_appel",""))
-        app.save()
-        for stud in stud_list:
-            if request.POST.get(str(stud.id),"") == 'on':
-                boolTemp = True
-            else:
-                boolTemp = False
-            pres = Presence(date_presence=request.POST.get("date_appel",""), student=stud, appel=app, isMissing=boolTemp)
-            pres.save()
-        return redirect("index")
+        if request.POST.get("date_appel","") == '':
+            cursus = Cursus.objects.get(id=idC)
+            context = {'liste': stud_list, 'cursus': cursus, 'err': "Il manque une date"}
+            return render(request, 'lycee/appel/cursusCall.html', context)
+        else:
+            cursuse = Cursus.objects.get(id=idC)
+            app = Appel(date=request.POST.get("date_appel",""), cursus= cursuse, debut = request.POST.get("debut_appel",""), fin = request.POST.get("fin_appel",""))
+            app.save()
+            for stud in stud_list:
+                if request.POST.get(str(stud.id),"") == 'on':
+                    boolTemp = True
+                else:
+                    boolTemp = False
+                pres = Presence(date_presence=request.POST.get("date_appel",""), student=stud, appel=app, isMissing=boolTemp)
+                pres.save()
+            return redirect("index")
     else:
         stud_list = Student.objects.filter(cursus_id=idC)
         cursus = Cursus.objects.get(id=idC)
@@ -140,3 +145,9 @@ def getParticularCalls(request):
         resList.append(templist)
     context = {'liste': resList}
     return render(request, 'lycee/presence/list-particularCalls.html', context)
+
+def detail_presence_Student(request, idS):
+    presence = Presence.objects.filter(student_id = idS, isMissing= True)
+    stud = Student.objects.get(id=idS)
+    context = {'pres': presence, 'stud':stud}
+    return render(request, 'lycee/presence/presence_student.html', context)

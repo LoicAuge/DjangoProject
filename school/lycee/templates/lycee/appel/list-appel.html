@@ -13,10 +13,10 @@
         <a href="/lycee/listCall/{{call.0}}"><li class="list-group-item">Appel du {{call.1}} pour le cours de {{call.2}} de {{call.3}} à {{call.4}}</li></a>
         {% endfor %}
     </ul>
-    <a href="particularCalls"><button type="button" class="btn btn-primary">Afficher les appels particuliers</button></a>
+    <a href="/lycee/particularCalls"><button type="button" class="btn btn-primary">Afficher les appels particuliers</button></a>
   {% else %}
     <p> Pas d'appel.</p>
-    <a href="particularCalls"><button type="button" class="btn btn-primary">Afficher les appels particuliers</button></a>
+    <a href="/lycee/particularCalls"><button type="button" class="btn btn-primary">Afficher les appels particuliers</button></a>
 
   {% endif %}
 {% endblock %}
