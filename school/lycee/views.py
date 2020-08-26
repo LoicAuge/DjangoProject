@@ -72,6 +72,10 @@ def cursusCall(request, idC):
             cursus = Cursus.objects.get(id=idC)
             context = {'liste': stud_list, 'cursus': cursus, 'err': "Il manque une date"}
             return render(request, 'lycee/appel/cursusCall.html', context)
+        elif int(request.POST.get("debut_appel","")[0:2])*60 + int(request.POST.get("debut_appel","")[3:5]) + 60 >= int(request.POST.get("fin_appel","")[0:2])*60 + int(request.POST.get("fin_appel","")[3:5]) :
+            cursus = Cursus.objects.get(id=idC)
+            context = {'liste': stud_list, 'cursus': cursus, 'err': "La fin de l'appel doit être au minimum 1h supérieure."}
+            return render(request, 'lycee/appel/cursusCall.html', context)
         else:
             cursuse = Cursus.objects.get(id=idC)
             app = Appel(date=request.POST.get("date_appel",""), cursus= cursuse, debut = request.POST.get("debut_appel",""), fin = request.POST.get("fin_appel",""))
